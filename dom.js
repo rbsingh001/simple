@@ -3,9 +3,17 @@ function myFunction(){
     var n = document.getElementById('name').value;
     var e = document.getElementById('email').value;
 
-    localStorage.setItem('name' ,n );
-    localStorage.setItem('email' ,e );
+    var users = JSON.parse(localStorage.getItem('users')) || [];
 
-    // localStorage.removeItem('name');
-    // localStorage.removeItem('email');
+    const user = {
+        name: n ,
+        email: e
+    };
+
+    users.push(user);
+    localStorage.setItem('users' , JSON.stringify(users));
+
+
+
+    
 }
