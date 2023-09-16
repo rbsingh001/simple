@@ -1,19 +1,29 @@
 function myFunction(){
     
+    
     var n = document.getElementById('name').value;
     var e = document.getElementById('email').value;
 
-    var users = JSON.parse(localStorage.getItem('users')) || [];
+    if(n.trim() != '' && e.trim() !=''){
 
-    const user = {
-        name: n ,
-        email: e
-    };
+        var users = JSON.parse(localStorage.getItem('users')) || [];
 
-    users.push(user);
-    localStorage.setItem('users' , JSON.stringify(users));
+        const user = {
+            name: n ,
+            email: e
+        };
 
-
-
+        users.push(user);
+        localStorage.setItem('users' , JSON.stringify(users));
+    }
+    var ul = document.getElementById('ul');
+    var li = document.createElement('li');
+    var t = document.createTextNode("Name: "+n+" "+"Email: "+e);
+    // console.log(t);
+    li.appendChild(t);
+    ul.appendChild(li);
     
+    
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
 }
