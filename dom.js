@@ -56,10 +56,37 @@ function myFunction() {
         
     };
 
-    
     li.appendChild(t);
     li.appendChild(deleteButton);
 
+
+    var editbtn = document.createElement('button');
+    editbtn.innerText = 'Edit';
+    editbtn.onclick = function(){
+
+
+        document.getElementById('name').value = user.name;
+        document.getElementById('email').value = user.email;
+
+
+
+        let ur = JSON.parse(localStorage.getItem('users'))
+        
+        for(let i=0;i<ur.length; i++){
+            if(ur[i].name == user.name ) {
+                console.log(i);
+                ur.splice(i, 1);
+           
+                localStorage.setItem('users', JSON.stringify(ur));
+                break;
+            }
+
+        }
+        
+        ul.removeChild(li);
+
+    }
+    li.appendChild(editbtn);
     
     ul.appendChild(li);
 };
